@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example.reqresclient</groupId>
+    <artifactId>reqres-client</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <!--
+        Specify the Java version for compilation.
+        Set to 11 or higher because HttpClient (used in UserClient.java)
+        was introduced in Java 11.
+        -->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <!-- Encoding for the project -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!--
+        Gson Library for JSON serialization and deserialization.
+        This is crucial for parsing the JSON response from the ReqRes API
+        into Java objects (UserDTO).
+        -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version> <!-- Recommended: Use the latest stable version -->
+        </dependency>
+
+        <!--
+        JUnit dependency for testing.
+        This is often included by default when generating a project
+        using 'maven-archetype-quickstart'. You can remove it if
+        you don't plan to write unit tests.
+        -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version> <!-- A common version for JUnit 4 -->
+            <scope>test</scope> <!-- Indicates this dependency is only for testing -->
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--
+            Maven Jar Plugin:
+            This plugin is used to create an executable JAR file for your application.
+            The 'mainClass' configuration specifies which class contains the 'main' method,
+            allowing you to run the JAR directly using 'java -jar your-app.jar'.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version> <!-- Use a stable version -->
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <!-- Add all dependencies to the classpath within the JAR -->
+                            <addClasspath>true</addClasspath>
+                            <!-- Specify the main class to be executed when the JAR is run -->
+                            <mainClass>com.example.reqresclient.UserClient</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!--
+            Maven Compiler Plugin:
+            Although compiler source/target are set in properties, explicitly
+            configuring the plugin can be useful for more fine-grained control
+            or specific toolchain settings.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version> <!-- Use a stable version compatible with your JDK -->
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

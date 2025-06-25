@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Created-By: Hakan (JDK 11.0.X)
+Main-Class: com.example.reqresclient.UserClient
+Class-Path: lib/gson-2.10.1.jar
+
+
+
+
